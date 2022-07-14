@@ -10,7 +10,7 @@ This program is shared for personal, academic or performance comparison purposes
 - torch.
 
 ### File management
-1. *Multi_agent* folder in the original *bluesky-master* folder/
+1. *Multi_agent* folder in the original *bluesky-master* folder.
 2. Move *MARL_plugin* python file to bluesky-master *plugins* folder.
 3. Move *run_MARL* script file to bluesky-master *scenario* folder.
 
