@@ -11,8 +11,8 @@ This program is shared for personal, academic or performance comparison purposes
 
 ### File management
 1. *Multi_agent* folder in the original *bluesky-master* folder/
-2. Move *MARL_plugin* python file from *Multi_agent* folder to bluesky-master *plugins* folder.
-3. Move *run_MARL* script file from *Multi_agent* folder to bluesky-master *scenario* folder.
+2. Move *MARL_plugin* python file to bluesky-master *plugins* folder.
+3. Move *run_MARL* script file to bluesky-master *scenario* folder.
 
 ### Settings
 From *settings* python file in *Multi_agent* folder, make settings modification by specifying the operating system, the population of aircraft to generate for each episode, the directory of bluesky simulator, the maximum of iteration and the scenario.
