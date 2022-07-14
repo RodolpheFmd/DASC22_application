@@ -54,7 +54,7 @@ def update():
     cnt_flow += 1
 
     if cnt_flow == traffic_flow and ac_remaining!=0:
-        cnt_flow, traffic_flow = 0, random.randint(10,30)
+        cnt_flow, traffic_flow = 0, random.randint(15,30)
         agents_in_traf.append(agents[set.population-ac_remaining])
         agents_in_traf[-1].generate
         ac_remaining -= 1
