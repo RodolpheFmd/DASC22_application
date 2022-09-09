@@ -30,7 +30,7 @@ class ActorNetwork(nn.Module):
         self.Fwd = nn.Sequential(
             nn.Linear(8, 256*4),
             nn.Tanh(),
-            nn.Linear(256*4, 9),
+            nn.Linear(256*4, 7),
             nn.Softmax(dim=-1))
             
     def forward(self, state):
