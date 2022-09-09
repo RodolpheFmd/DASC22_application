@@ -32,7 +32,7 @@ class ActorNetwork(nn.Module):
         self.Fwd = nn.Sequential(
             nn.Linear(8, 256*4),
             nn.Tanh(),
-            nn.Linear(256*4, len(set.commands)),
+            nn.Linear(256*4, 7),
             nn.Softmax(dim=-1))
         self.device = T.device('cuda:0' if T.cuda.is_available() else 'cpu')
         self.to(self.device)
