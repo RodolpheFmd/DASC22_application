@@ -48,10 +48,10 @@ class SuperAgent:
         print(f'\n\n--LOADING MODELS--\n')
         if set.os == 'L':
             self.Policy.load_state_dict(T.load(set.path_save+'Multi_agent/Models/Actor_'+str(set.scenario)))
-            self.gru.load_state_dict(T.load(set.path_save+'Multi_agent/Models/Gru_'+str(set.scenario)))
+            self.gru.load_state_dict(T.load(set.path_save+'Multi_agent/Models/Gru_'+str(set.scenario)), strict=False)
         else:
             self.Policy.load_state_dict(T.load(set.path_save+'Multi_agent\\Models\\Actor_'+str(set.scenario)))
-            self.gru.load_state_dict(T.load(set.path_save+'Multi_agent\\Models\\Gru_'+str(set.scenario)))
+            self.gru.load_state_dict(T.load(set.path_save+'Multi_agent\\Models\\Gru_'+str(set.scenario)), strict=False)
         self.Policy.eval()
         self.gru.eval()
 
