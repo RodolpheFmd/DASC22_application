@@ -22,7 +22,7 @@ origin, destination = generate_airspace()
 
 def init_plugin():
     global agents, step, start, traffic_flow, cnt_flow, agents_in_traf, origin, destination, ac_remaining, safeness, safeness_list
-    traffic_flow, step, cnt_flow, ac_remaining, safeness, safeness_list = random.randint(15, 30), 0, 0, set.population-1, 0, []
+    traffic_flow, step, cnt_flow, ac_remaining, safeness, safeness_list = random.randint(10, 30), 0, 0, set.population-1, 0, []
     print(f'\nNew episode : {AI.memory.episode}')
     if set.scenario==1:
         agents = [Agent("UAS" + str(k + 1), random.randint(10, 35), origin[k%2], destination) for k in range(set.population)]
@@ -54,7 +54,7 @@ def update():
     cnt_flow += 1
 
     if cnt_flow == traffic_flow and ac_remaining!=0:
-        cnt_flow, traffic_flow = 0, random.randint(15,30)
+        cnt_flow, traffic_flow = 0, random.randint(10,30)
         agents_in_traf.append(agents[set.population-ac_remaining])
         agents_in_traf[-1].generate
         ac_remaining -= 1
