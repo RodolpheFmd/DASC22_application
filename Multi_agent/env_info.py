@@ -78,12 +78,12 @@ class Agent:
 
     @property
     def perform_action(self):
-        if self.speed/0.514444 + [-7, -5, -3, -1, 0, 1, 3, 5, 7][self.action_idx] >= 35:
+        if self.speed/0.514444 + [-5, -3, -1, 0, 1, 3, 5][self.action_idx] >= 35:
             stack.stack(f'SPD {self.name} 35')
-        elif self.speed/0.514444 + [-7, -5, -3, -1, 0, 1, 3, 5, 7][self.action_idx] <= 10:
+        elif self.speed/0.514444 + [-5, -3, -1, 0, 1, 3, 5][self.action_idx] <= 10:
             stack.stack(f'SPD {self.name} 10')
         else:
-            stack.stack(f'SPD {self.name} {self.speed / 0.514444 + [-7, -5, -3, -1, 0, 1, 3, 5, 7][self.action_idx]}')
+            stack.stack(f'SPD {self.name} {self.speed / 0.514444 + [-5, -3, -1, 0, 1, 3, 5][self.action_idx]}')
 
     @property
     def target_reached(self):
