@@ -19,12 +19,11 @@ From *settings* python file in *Multi_agent* folder, make settings modification 
 
 ## Scenarios
 ### Reminder
-The conference paper presents three case studies:
+The conference paper presents three case studies and two can be deployed here:
 - **Case study 1** : 2 fixed routes toward a merging point.
 - **Case study 2** : 2 fixed routes intersecting at half way of their respective route.
-- **Case study 2'** : 2 non-fixed routes intersecting at half way of their respective route with the generation of random agent dynamic model.
 
-*However, this case study 2' presents here only Mavic drone model in contrast to the paper and the results from different models highlighted in the set-up section*
+
 
 ### Choice of the scenario
 From *settings* python file in *Multi_agent* folder, change the variable 'scenario' from the integer 1, 2 or 3 respectively.
