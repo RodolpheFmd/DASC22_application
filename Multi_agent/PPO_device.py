@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import Multi_agent.settings as set
 from torch.distributions.categorical import Categorical
+import os
 
 class PPOMemory:
     def __init__(self):
@@ -47,11 +48,11 @@ class SuperAgent:
         self.Policy, self.gru, self.memory   = ActorNetwork(), PreProcessIntruders(), PPOMemory()
         print(f'\n\n--LOADING MODELS--\n')
         if set.os == 'L':
-            self.Policy.load_state_dict(T.load(set.path_save+'Multi_agent/Models/Actor_'+str(set.scenario)))
-            self.gru.load_state_dict(T.load(set.path_save+'Multi_agent/Models/Gru_'+str(set.scenario)), strict=False)
+            self.Policy.load_state_dict(T.load(os.getcwd()+'/Multi_agent/Models/Actor_'+str(set.scenario)))
+            self.gru.load_state_dict(T.load(os.getcwd()+'/Multi_agent/Models/Gru_'+str(set.scenario)), strict=False)
         else:
-            self.Policy.load_state_dict(T.load(set.path_save+'Multi_agent\\Models\\Actor_'+str(set.scenario)))
-            self.gru.load_state_dict(T.load(set.path_save+'Multi_agent\\Models\\Gru_'+str(set.scenario)), strict=False)
+            self.Policy.load_state_dict(T.load(os.getcwd()+'\\Multi_agent\\Models\\Actor_'+str(set.scenario)))
+            self.gru.load_state_dict(T.load(os.getcwd()+'\\Multi_agent\\Models\\Gru_'+str(set.scenario)), strict=False)
         self.Policy.eval()
         self.gru.eval()
 
