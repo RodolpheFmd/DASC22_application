@@ -30,11 +30,18 @@ class PreProcessIntruders(nn.Module):
 class ActorNetwork(nn.Module):
     def __init__(self):
         super(ActorNetwork, self).__init__()
-        self.Fwd = nn.Sequential(
-            nn.Linear(8, 256*4),
-            nn.ReLU(),
-            nn.Linear(256*4, 7),
-            nn.Softmax(dim=-1))
+        if not set.scenario==3:
+            self.Fwd = nn.Sequential(
+                nn.Linear(8, 256*4),
+                nn.ReLU(),
+                nn.Linear(256*4, 9),
+                nn.Softmax(dim=-1))
+        else:
+            self.Fwd = nn.Sequential(
+                nn.Linear(7, 256*4),
+                nn.ReLU(),
+                nn.Linear(256*4, 9),
+                nn.Softmax(dim=-1))
         self.device = T.device('cuda:0' if T.cuda.is_available() else 'cpu')
         self.to(self.device)
 
@@ -61,8 +68,9 @@ class SuperAgent:
         self.memory.crashs += agent.crashs
 
     def choose_action(self, agent):
-        own_state = T.tensor(agent.state[0], dtype=T.float).to(self.Policy.device)
-        processed_state = T.cat(tuple([own_state, T.squeeze(self.gru(agent.state[1:]))]))
-        dist   = self.Policy(processed_state)
-        action = dist.sample()
-        agent.action_idx = T.squeeze(action).item()
+        with T.no_grad():
+            own_state = T.tensor(agent.state[0], dtype=T.float).to(self.Policy.device)
+            processed_state = T.cat(tuple([own_state, T.squeeze(self.gru(agent.state[1:]))]))
+            dist   = self.Policy(processed_state)
+            action = dist.sample()
+            agent.action_idx = T.squeeze(action).item()
