@@ -60,10 +60,15 @@ class Agent:
 
     @property
     def update_observation_state(self):
-        self.state = [[self.agent_to_destination/(2*1852*5), 
-                       self.speed/45, 
-                       self.ax/10,
-                       self.hdg/360]]
+        if not set.scenario==3:
+            self.state = [[self.agent_to_destination/(2*1852*5), 
+                           self.speed/45, 
+                           self.ax/10,
+                           self.hdg/360]]
+        else:
+            self.state = [[self.speed/45, 
+                           self.ax/10,
+                           self.hdg/360]]
         for intruder_idx, intruder in enumerate(self.obs_int_list):
             self.state.append([self.obs_int_sep[intruder_idx]/2,
                                (self.speed - intruder.speed)/45,
@@ -78,12 +83,12 @@ class Agent:
 
     @property
     def perform_action(self):
-        if self.speed/0.514444 + [-5, -3, -1, 0, 1, 3, 5][self.action_idx] >= 35:
+        if self.speed/0.514444 + [-7, -5, -3, -1, 0, 1, 3, 5, 7][self.action_idx] >= 35:
             stack.stack(f'SPD {self.name} 35')
-        elif self.speed/0.514444 + [-5, -3, -1, 0, 1, 3, 5][self.action_idx] <= 10:
+        elif self.speed/0.514444 + [-7, -5, -3, -1, 0, 1, 3, 5, 7][self.action_idx] <= 10:
             stack.stack(f'SPD {self.name} 10')
         else:
-            stack.stack(f'SPD {self.name} {self.speed / 0.514444 + [-5, -3, -1, 0, 1, 3, 5][self.action_idx]}')
+            stack.stack(f'SPD {self.name} {self.speed / 0.514444 + [-7, -5, -3, -1, 0, 1, 3, 5, 7][self.action_idx]}')
 
     @property
     def target_reached(self):
@@ -124,9 +129,9 @@ def update_observation(agents):
                     if intruder not in agent.obs_int_list:
                         agent.obs_int_list.append(intruder)
                         agent.obs_int_sep.append(sep)
-                    if 0.0 < sep <= 0.90:
+                    if 0.0 < sep <= 0.27:
                         agent.conflicts += 1
-                        if 0.0 < sep <= 0.30:
+                        if 0.0 < sep <= 0.081:
                             agent.safely_flown = 0
                             agent.crashs += 1
                 else:
